@@ -8,6 +8,8 @@ import { ComingViewComponent } from './coming-view/coming-view.component';
 import { LiveViewComponent } from './live-view/live-view.component';
 import { DatepickerViewComponent } from './datepicker-view/datepicker-view.component';
 import { TableViewComponent } from './table-view/table-view.component';
+import { RegistrationViewComponent } from './registration-view/registration-view.component';
+import { LoginViewComponent } from './login-view/login-view.component';
 
 const routes: Routes = [
   {path: 'scores', component: MainViewComponent},
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path: 'scores/:date', component: DatepickerViewComponent},
   {path: 'scores/preview/:id', component: MatchPreviewComponent},
   {path: 'scores/preview/:league/table', component: TableViewComponent},
+  {path: 'register', component: RegistrationViewComponent},
+  {path: 'login', component: LoginViewComponent},
   {path: '', redirectTo: 'scores', pathMatch: 'full'},
   {path: '**', redirectTo: 'scores', pathMatch: 'full'},
 ];

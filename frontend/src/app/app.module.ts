@@ -18,7 +18,9 @@ import { LiveViewComponent } from './live-view/live-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatepickerViewComponent } from './datepicker-view/datepicker-view.component';
 import { DatePipe } from '@angular/common';
-import { TableViewComponent } from './table-view/table-view.component'
+import { TableViewComponent } from './table-view/table-view.component';
+import { RegistrationViewComponent } from './registration-view/registration-view.component';
+import { LoginViewComponent } from './login-view/login-view.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { TableViewComponent } from './table-view/table-view.component'
     ComingViewComponent,
     LiveViewComponent,
     DatepickerViewComponent,
-    TableViewComponent
+    TableViewComponent,
+    RegistrationViewComponent,
+    LoginViewComponent
   ],
   imports: [
     BrowserModule,
