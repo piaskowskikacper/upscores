@@ -11,10 +11,11 @@ import { TableViewComponent } from './table-view/table-view.component';
 import { RegistrationViewComponent } from './registration-view/registration-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { AuthGuard } from './auth.guard';
+import { FavouriteViewComponent } from './favourite-view/favourite-view.component';
 
 const routes: Routes = [
   {path: 'scores', component: MainViewComponent},
-  {path: 'scores/favourite', component: MainViewComponent, canActivate: [AuthGuard]},
+  {path: 'scores/favourite', component: FavouriteViewComponent, canActivate: [AuthGuard]},
   {path: 'scores/live', component: LiveViewComponent},
   {path: 'scores/coming', component: ComingViewComponent},
   {path: 'scores/finished', component: FinishedViewComponent},

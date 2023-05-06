@@ -20,6 +20,22 @@ app.use((req, res, next) => {
 });
 
 
+function verifyToken(req,res,next){
+    if (!req.headers.authorization) {
+        return res.status(401).send('Unauthorized request')
+    } 
+    let token = req.headers.authorization.split(' ')[1]
+    if (token === 'null') {
+        return res.status(401).send('Unauthorized request')
+    }
+    let payload = jwt.verify(token, 'secretKey') 
+    if(!payload) {
+        return res.status(401).send('Unauthorized request')
+    }   
+    req.userId = payload.subject
+    next()
+}
+
 app.get('/matches', (req, res) => {
     today = new Date().toISOString().split('T')[0]
     Match.find({date: today},
@@ -52,11 +68,11 @@ app.get('/matches/coming', (req, res) => {
         .catch((error) => console.log(error))
 });
 
-// app.get('/matches/favourite', (req, res) => {
-//     Match.find({ _id: req.params._id })
-//         .then(matches => res.send(matches))
-//         .catch((error) => console.log(error))
-// });
+app.get('/matches/favourite', verifyToken, (req, res) => {
+    Match.find({ _id: "AFC-Bournemouth_Chelsea_2023-05-06" })
+        .then(matches => res.send(matches))
+        .catch((error) => console.log(error))
+});
 
 // + endpoint do wyszukiwania searchem ???
 

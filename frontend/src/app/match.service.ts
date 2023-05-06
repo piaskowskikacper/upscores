@@ -39,4 +39,8 @@ export class MatchService {
     return this.http.get<Match[]>(`${this.apiServerUrl}/matches/coming`)
   }
 
+  public getFavouriteMatches(): Observable<Match[]> {
+    return this.http.get<Match[]>(`${this.apiServerUrl}/matches/favourite`)
+  }
+
 }

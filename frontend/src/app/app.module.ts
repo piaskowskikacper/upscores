@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { FavouriteViewComponent } from './favourite-view/favourite-view.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
     TableViewComponent,
     RegistrationViewComponent,
     LoginViewComponent,
+    FavouriteViewComponent,
   ],
   imports: [
     BrowserModule,
