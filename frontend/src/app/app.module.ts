@@ -21,6 +21,7 @@ import { DatePipe } from '@angular/common';
 import { TableViewComponent } from './table-view/table-view.component';
 import { RegistrationViewComponent } from './registration-view/registration-view.component';
 import { LoginViewComponent } from './login-view/login-view.component'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LoginViewComponent } from './login-view/login-view.component'
     MatFormFieldModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
