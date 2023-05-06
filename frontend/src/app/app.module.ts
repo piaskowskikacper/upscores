@@ -22,6 +22,7 @@ import { TableViewComponent } from './table-view/table-view.component';
 import { RegistrationViewComponent } from './registration-view/registration-view.component';
 import { LoginViewComponent } from './login-view/login-view.component'
 import { FormsModule } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { FormsModule } from '@angular/forms';
     DatepickerViewComponent,
     TableViewComponent,
     RegistrationViewComponent,
-    LoginViewComponent
+    LoginViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,7 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
