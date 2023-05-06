@@ -82,10 +82,17 @@ app.get('/matches/:league/table', (req, res) => {
 
 app.post("/register", (req, res) => {
     var user = new User(req.body);
-    user.save()
-      .then(registeredUser => {
-        res.status(200).send(registeredUser)
-      })
+    User.findOne({email: user.email})
+        .then(userData => {
+            if (!userData) {
+                user.save()
+                .then(registeredUser => {
+                  res.status(200).send(registeredUser)
+                })
+            } else {
+                res.status(404).send('Email already taken')
+            }
+        })
       .catch(err => {
         res.status(400).send(err);
       });
