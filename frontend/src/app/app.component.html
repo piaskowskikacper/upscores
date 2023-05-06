@@ -1,0 +1,34 @@
+<nav class="menu">
+  <div class="menu-logo">
+    <a href="" routerLink="/scores" class="logo-text"><img src="./assets/shoot.png" alt="image"> <p style="margin-left: 0.5em; margin-right: 0.5em;">UpScores</p> <img src="./assets/goal.png" alt="image"></a>
+  </div>
+  <div class="menu-navbar">
+    <ul>  
+
+        <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date">
+        <!-- <mat-hint style="color: black">MM/DD/YYYY</mat-hint> -->
+        <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+        <mat-datepicker #picker style="color: rgb(0, 0, 0)"></mat-datepicker>
+        </mat-form-field >
+
+      <li><span routerLink="/scores" class="nav-link" > ALL </span></li> 
+      <li><span routerLink="/scores/live"  class="nav-link" > LIVE </span></li>  
+      <li><span routerLink="/scores/finished"  class="nav-link" > FINISHED </span></li>  
+      <li><span routerLink="/scores/coming"  class="nav-link" > COMING </span></li>      
+      <li><span class="nav-link" color="black"> FAVOURITE </span></li>
+     </ul>
+     <div>
+
+    </div>
+    <!-- <form class="form-inline my-2 my-lg-0">
+      <input type="search" 
+       name="key" id="searchMatch" class="" placeholder="Search matches..." required>
+      </form> -->
+  </div>
+</nav>
+
+
+
+<router-outlet></router-outlet>

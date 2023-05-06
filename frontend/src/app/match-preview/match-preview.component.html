@@ -1,0 +1,55 @@
+<div class="content-container">
+    <div class="match-stats row" *ngFor="let m of match">
+        <span style="width:100%; padding-top: 1%;">
+            {{m?.league}}     
+        </span>
+        <span style="width:100%">
+            {{m?.date}}     
+        </span>
+        <span style="width:100%; padding-bottom: 2%;">
+            {{m?.time}}     
+        </span>
+            <div class="home col-4">
+                <p>{{m?.home_team}}</p>
+                <p>{{m?.home_possession}}%</p>
+                <p>{{m?.home_shots}}</p>
+                <p>{{m?.home_ontarget}}</p>
+                <p>{{m?.home_fouls}}</p>
+                <p>{{m?.home_offsides}}</p>
+                <p>{{m?.home_corners}}</p>
+                <p>{{m?.home_yellow_cards}}</p>
+                <p>{{m?.home_red_cards}}</p>
+            </div>
+            <div class="stat col-4">
+                <p>{{m?.home_goals}} : {{m?.away_goals}}</p>
+                <p>Possession</p>
+                <p>Total shots</p>
+                <p>Shots on target</p>
+                <p>Fouls committed</p>
+                <p>Offsides</p>
+                <p>Corner kicks</p>
+                <p>Yellow cards</p>
+                <p>Red cards</p>
+            </div>
+            <div class="away col-4">
+                <p>{{m?.away_team}}</p>
+                <p>{{m?.away_possession}}%</p>
+                <p>{{m?.away_shots}}</p>
+                <p>{{m?.away_ontarget}}</p>
+                <p>{{m?.away_fouls}}</p>
+                <p>{{m?.away_offsides}}</p>
+                <p>{{m?.away_corners}}</p>
+                <p>{{m?.away_yellow_cards}}</p>
+                <p>{{m?.away_red_cards}}</p>
+            </div>
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+<router-outlet></router-outlet>
