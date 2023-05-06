@@ -5,6 +5,7 @@ const mongoose = require('./database/mongoose');
 const { spawn } = require('child_process');
 
 const Match = require('./database/models/match');
+const User = require('./database/models/user')
 
 app.use(express.json());
 
@@ -75,6 +76,35 @@ app.get('/matches/date/:date', (req, res) => {
 app.get('/matches/:league/table', (req, res) => {
     Match.find({ league: req.params.league })
         .then(matches => res.send(matches))
+        .catch((error) => console.log(error))
+});
+
+
+app.post("/register", (req, res) => {
+    var user = new User(req.body);
+    user.save()
+      .then(registeredUser => {
+        res.status(200).send(registeredUser)
+      })
+      .catch(err => {
+        res.status(400).send(err);
+      });
+});
+
+
+app.post('/login', (req,res)=> {
+    var user = new User(req.body);
+    User.findOne({email: user.email})
+        .then( userData => {
+            if (!userData) {
+                res.status(404).send('This user does not exist')
+            } else
+                if (user.password !== userData.password) {
+                    res.status(404).send('Invalid password')
+                 } else {
+                    res.status(200).send(user)
+                 }
+        })
         .catch((error) => console.log(error))
 });
 
