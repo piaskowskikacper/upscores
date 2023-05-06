@@ -82,7 +82,7 @@ app.get('/matches/:league/table', (req, res) => {
 
 app.post("/register", (req, res) => {
     var user = new User(req.body);
-    User.findOne({email: user.email})
+    User.findOne({username: user.username})
         .then(userData => {
             if (!userData) {
                 user.save()
@@ -90,7 +90,7 @@ app.post("/register", (req, res) => {
                   res.status(200).send(registeredUser)
                 })
             } else {
-                res.status(404).send('Email already taken')
+                res.status(404).send('Username already taken')
             }
         })
       .catch(err => {
@@ -101,7 +101,7 @@ app.post("/register", (req, res) => {
 
 app.post('/login', (req,res)=> {
     var user = new User(req.body);
-    User.findOne({email: user.email})
+    User.findOne({username: user.username})
         .then( userData => {
             if (!userData) {
                 res.status(404).send('This user does not exist')

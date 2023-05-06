@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
 })
 export class RegistrationViewComponent implements OnInit{
 
-  registerUserData = {email: '', password: ''}
+  registerUserData = {username: '', password: ''}
   constructor(private _auth: AuthService){}
 
   registerUser(){
