@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatDatepickerModule } from '@angular/material/datepicker';
@@ -23,6 +23,8 @@ import { RegistrationViewComponent } from './registration-view/registration-view
 import { LoginViewComponent } from './login-view/login-view.component'
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,12 @@ import { AuthService } from './auth.service';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [DatePipe, AuthService],
+  providers: [DatePipe, AuthService, AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

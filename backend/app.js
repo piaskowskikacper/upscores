@@ -15,7 +15,7 @@ app.listen(3000, () => console.log("Server connected on port 3000"));
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-COntrol-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
 
