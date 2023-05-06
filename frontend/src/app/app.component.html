@@ -28,6 +28,14 @@
       </form> -->
   </div>
 </nav>
+<nav class="menu">
+  <div class="menu-navbar">
+    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../login">Login</a>
+    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../register">Register</a>
+    <a class="nav-link" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()" routerLink="../scores">Logout</a>
+  </div>
+</nav>
+
 
 
 

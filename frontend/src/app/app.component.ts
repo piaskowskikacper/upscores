@@ -5,6 +5,7 @@ import { MatchService } from './match.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
   public dateString : String;
   url: string;
      
-  constructor( private matchService: MatchService, private cd: ChangeDetectorRef, private datepipe: DatePipe, private router: Router){ 
+  constructor( private matchService: MatchService, private cd: ChangeDetectorRef, private datepipe: DatePipe, private router: Router, public _authService: AuthService){ 
 
   }
 
