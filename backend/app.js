@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const app = express();
 const mongoose = require('./database/mongoose');
 
@@ -87,7 +88,9 @@ app.post("/register", (req, res) => {
             if (!userData) {
                 user.save()
                 .then(registeredUser => {
-                  res.status(200).send(registeredUser)
+                    let payload = { subject: registeredUser._id }
+                    let token = jwt.sign(payload, 'secretKey')
+                    res.status(200).send({token})
                 })
             } else {
                 res.status(404).send('Username already taken')
@@ -109,7 +112,9 @@ app.post('/login', (req,res)=> {
                 if (user.password !== userData.password) {
                     res.status(404).send('Invalid password')
                  } else {
-                    res.status(200).send(user)
+                    let payload = { subject: userData._id }
+                    let token = jwt.sign(payload, 'secretKey') 
+                    res.status(200).send({token})
                  }
         })
         .catch((error) => console.log(error))
