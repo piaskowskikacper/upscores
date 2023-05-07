@@ -3,7 +3,6 @@ import { Match } from '../match';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatchService } from '../match.service';
 import { AuthService } from '../auth.service';
-import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class MainViewComponent implements OnInit{
   public matches: Match[];
   public favId: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
+  constructor(private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
 
   }
 
@@ -45,7 +44,6 @@ export class MainViewComponent implements OnInit{
     }, 30000);
 
   ngOnInit(): void {
-    this.favId = this.activatedRoute.snapshot.paramMap.get('id');
     this.getMatches();
     this.interval;
     this.cd.detectChanges();
