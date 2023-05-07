@@ -1,0 +1,17 @@
+.card {
+    background-color: #A09191;
+    border-radius: 24px;
+}
+
+.form-control {
+    border-radius: 24px;
+    background-color: #A09191;
+    border-color: black;
+;
+}
+
+.btn.btn-primary {
+    border-radius: 24px;;
+    background-color: #952626;
+    color: black;
+}
