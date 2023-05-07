@@ -18,6 +18,16 @@ export class FavouriteViewComponent implements OnInit{
 
   }
 
+  public unmarkAsFavourite(_id : String): void{
+    this.matchService.unmarkAsFavourite(_id)
+      .subscribe(
+        res => {
+          console.log(res)
+          window.location.reload()
+        },
+        err => console.log(err)
+      )
+  }
 
     public getFavouriteMatches(): void {
     this.matchService.getFavouriteMatches().subscribe(

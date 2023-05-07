@@ -47,4 +47,8 @@ export class MatchService {
     return this.http.get<any>(`${this.apiServerUrl}/matches/favourite/add/${_id}`)
   }
 
+  public unmarkAsFavourite(_id : String) {
+    return this.http.get<any>(`${this.apiServerUrl}/matches/favourite/delete/${_id}`)
+  }
+
 }

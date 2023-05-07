@@ -183,6 +183,27 @@ app.get('/matches/favourite/add/:_id',
         })
 
 
+app.get('/matches/favourite/delete/:_id', 
+    verifyToken, 
+    (req, res) => {
+        
+        let token = req.headers.authorization.split(' ')[1]
+        let decoded = jwt.verify(token, 'secretKey') 
+        var userId = decoded.subject;
+        // console.log(userId)
+        
+        User.updateOne(
+            {_id: userId},
+            {
+                $pull: {
+                     favourite: req.params._id
+                }
+            }
+        )
+            .then(res.status(200).send())    
+            .catch((error) => console.log(error))
+    })
+
 
 setInterval(function(){
     const childDbUpdate = spawn('py', ['scrapper.py']);
