@@ -77,10 +77,11 @@ verifyToken,
     let decoded = jwt.verify(token, 'secretKey') 
     var userId = decoded.subject;
     // console.log(userId)
+    today = new Date().toISOString().split('T')[0]
 
     User.findOne({_id: userId}, {_id: 0, favourite:1})
         .then(matches => {
-            Match.find({ _id: matches.favourite })
+            Match.find({ _id: matches.favourite, date: today})
                 .then(result => res.send(result))
             })
 
