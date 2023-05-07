@@ -79,9 +79,10 @@ verifyToken,
     // console.log(userId)
     today = new Date().toISOString().split('T')[0]
 
-    User.findOne({_id: userId}, {_id: 0, favourite:1})
+    User.findOne({_id: userId}, {_id: 0, favourite:1},)
         .then(matches => {
-            Match.find({ _id: matches.favourite, date: today})
+            Match.find({ _id: matches.favourite, date: today},
+                {_id:1, time:1, league:1, home_team:1, away_team:1, home_goals:1, away_goals:1})
                 .then(result => res.send(result))
             })
 
@@ -90,7 +91,7 @@ verifyToken,
 
         .catch((error) => console.log(error))
     })
-
+  
 
 app.get('/matches/:_id', (req, res) => {
     Match.find({ _id: req.params._id })
@@ -159,18 +160,42 @@ app.post('/login', (req,res)=> {
 });
 
 
-// setInterval(function(){
-//     const childDbUpdate = spawn('py', ['scrapper.py']);
 
-//     childDbUpdate.stdout.on('data', (data) => {
-//         console.log(`stdout: ${data}`);
-//     });
+app.get('/matches/favourite/add/:_id', 
+    verifyToken, 
+    (req, res) => {
     
-//     childDbUpdate.stderr.on('data', (data) => {
-//         console.log(`stderr: ${data}`);
-//     });
+        let token = req.headers.authorization.split(' ')[1]
+        let decoded = jwt.verify(token, 'secretKey') 
+        var userId = decoded.subject;
+        // console.log(userId)
     
-//     childDbUpdate.on('close', (code) => {
-//         console.log(`database update exited with code ${code}`);
-//     });
-// }, 300000);
+        User.updateOne(
+            {_id: userId},
+            {
+                $push: {
+                    favourite: req.params._id
+                }
+            }
+        )
+            .then(res.status(200).send())    
+            .catch((error) => console.log(error))
+        })
+
+
+
+setInterval(function(){
+    const childDbUpdate = spawn('py', ['scrapper.py']);
+
+    childDbUpdate.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+    });
+    
+    childDbUpdate.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    });
+    
+    childDbUpdate.on('close', (code) => {
+        console.log(`database update exited with code ${code}`);
+    });
+}, 300000);

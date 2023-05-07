@@ -149,11 +149,15 @@ body {
   font-style: normal;
   font-weight: 400;
   font-size: large;
-  cursor: pointer;
+
 }
 
 .fav {
   padding-top: 3%;
+}
+
+.fav span {
+  cursor: pointer;
 }
 
 .comp {
@@ -166,6 +170,7 @@ body {
 
 .teams {
   padding-top: 2%;
+  cursor: pointer;
 }
 
 .result {

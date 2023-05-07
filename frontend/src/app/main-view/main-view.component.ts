@@ -3,6 +3,7 @@ import { Match } from '../match';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatchService } from '../match.service';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,13 +13,20 @@ import { AuthService } from '../auth.service';
 })
 export class MainViewComponent implements OnInit{
   public matches: Match[];
+  public favId: any;
 
-  constructor(private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
+  constructor(private activatedRoute: ActivatedRoute, private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
 
   }
 
-  public addFavourite(): void{
-
+  public markAsFavourite(_id : String): void{
+    this.matchService.markAsFavourite(_id)
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => console.log(err)
+      )
   }
 
   public getMatches(): void {
@@ -37,12 +45,14 @@ export class MainViewComponent implements OnInit{
     }, 30000);
 
   ngOnInit(): void {
+    this.favId = this.activatedRoute.snapshot.paramMap.get('id');
     this.getMatches();
     this.interval;
     this.cd.detectChanges();
   }
 
   ngOnDestroy(): void{
+
     clearInterval(this.interval)
   }
 

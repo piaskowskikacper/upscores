@@ -724,7 +724,7 @@ def meczyki_get_timetable(soup):
     return urls;
 
 def meczyki_get_previous_data():
-    meczyki_soup = get_soup("https://www.meczyki.pl/serie-a,13,terminarz")
+    meczyki_soup = get_soup("https://www.meczyki.pl/ligue-1,16,terminarz")
     meczyki_urls = meczyki_get_timetable(meczyki_soup)    
     meczyki_data = []
 
@@ -844,11 +844,11 @@ def export_old(data):
 
 ##### koniec dodatkowych funkcji // początek testów
 
-# export(integrate())
+export(integrate())
 
 # export_old(livescores_get_yesterday_data())
 
-export_old(meczyki_get_previous_data())
+# export_old(meczyki_get_previous_data())
 
 # db = get_database()
 # collection_name = db["Matches"]
