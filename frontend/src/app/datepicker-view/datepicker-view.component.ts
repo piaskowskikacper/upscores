@@ -14,9 +14,20 @@ import { AuthService } from '../auth.service';
 export class DatepickerViewComponent implements OnInit{
   public date : any;
   public matches: Match[];
+  public favId: any;
 
   constructor(private activatedRoute: ActivatedRoute, private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
 
+  }
+
+  public markAsFavourite(_id : String): void{
+    this.matchService.markAsFavourite(_id)
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => console.log(err)
+      )
   }
 
 

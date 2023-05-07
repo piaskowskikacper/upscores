@@ -12,12 +12,22 @@ import { AuthService } from '../auth.service';
 })
 export class LiveViewComponent implements OnInit{
   public matches: Match[];
+  public favId: any;
 
 
   constructor(private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
 
   }
 
+  public markAsFavourite(_id : String): void{
+    this.matchService.markAsFavourite(_id)
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => console.log(err)
+      )
+  }
 
   public getLiveMatches(): void {
     this.matchService.getLiveMatches().subscribe(
