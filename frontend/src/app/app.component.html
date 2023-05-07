@@ -2,6 +2,12 @@
   <div class="menu-logo">
     <a href="" routerLink="/scores" class="logo-text"><img src="./assets/shoot.png" alt="image"> <p style="margin-left: 0.5em; margin-right: 0.5em;">UpScores</p> <img src="./assets/goal.png" alt="image"></a>
   </div>
+    <div class="d-flex justify-content-center"> 
+    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../login">Login</a>
+    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../register">Register</a>
+    <a class="nav-link" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()" routerLink="../scores">Logout</a>
+  </div>
+
   <div class="menu-navbar">
     <ul>  
 
@@ -26,13 +32,6 @@
       <input type="search" 
        name="key" id="searchMatch" class="" placeholder="Search matches..." required>
       </form> -->
-  </div>
-</nav>
-<nav class="menu">
-  <div class="menu-navbar">
-    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../login">Login</a>
-    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../register">Register</a>
-    <a class="nav-link" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()" routerLink="../scores">Logout</a>
   </div>
 </nav>
 
