@@ -69,6 +69,7 @@ app.get('/matches/coming', (req, res) => {
 });
 
 app.get('/matches/favourite', verifyToken, (req, res) => {
+    
     Match.find({ _id: "AFC-Bournemouth_Chelsea_2023-05-06" })
         .then(matches => res.send(matches))
         .catch((error) => console.log(error))
@@ -102,7 +103,9 @@ app.post("/register", (req, res) => {
     User.findOne({username: user.username})
         .then(userData => {
             if (!userData) {
-                if (user.username.indexOf(' ') == -1 && user.password.indexOf(' ') == -1 && user.password.indexOf('') == -1){
+                if (user.username.indexOf(' ') == -1 && user.password.indexOf(' ') == -1 
+                // && user.password.indexOf('') == -1
+                ){
                     user.save()
                     .then(registeredUser => {
                         let payload = { subject: registeredUser._id }
