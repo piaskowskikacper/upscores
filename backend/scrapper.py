@@ -724,7 +724,7 @@ def meczyki_get_timetable(soup):
     return urls;
 
 def meczyki_get_previous_data():
-    meczyki_soup = get_soup("https://www.meczyki.pl/premier-league,8,terminarz")
+    meczyki_soup = get_soup("https://www.meczyki.pl/serie-a,13,terminarz")
     meczyki_urls = meczyki_get_timetable(meczyki_soup)    
     meczyki_data = []
 
@@ -783,35 +783,36 @@ def export_old(data):
     collection_name = dbname["matches"]
 
     for d in data:
-        if datetime.strptime(d[2][0], '%Y-%m-%d').date() < date.today():
+        # if datetime.strptime(d[2][0], '%Y-%m-%d').date() < date.today():
             id =  d[1][0].replace(' ', '-')+'_'+d[1][1].replace(' ', '-')+'_'+d[2][0]
             if collection_name.count_documents({"_id" : id}) > 0:
-                collection_name.replace_one({"_id" : id}, {
-                    "_id" : id,
-                    "date" : d[2][0],
-                    "time" : d[2][1],
-                    "league" : d[0],
-                    "home_team" : d[1][0],
-                    "away_team" : d[1][1],
-                    "home_goals" : d[3][0],
-                    "away_goals" : d[3][1],
-                    "home_possession" : d[4][0],
-                    "away_possession" : d[4][1],
-                    "home_shots" : d[5][0],
-                    "away_shots" : d[5][1],
-                    "home_ontarget" : d[6][0],
-                    "away_ontarget" : d[6][1],
-                    "home_fouls" : d[7][0],
-                    "away_fouls" : d[7][1],
-                    "home_offsides" : d[8][0],
-                    "away_offsides" : d[8][1],
-                    "home_corners" : d[9][0],
-                    "away_corners" : d[9][1],  
-                    "home_yellow_cards" : d[10][0],
-                    "away_yellow_cards" : d[10][1],   
-                    "home_red_cards" : d[11][0],
-                    "away_red_cards" : d[11][1],        
-                    })
+                # collection_name.replace_one({"_id" : id}, {
+                #     "_id" : id,
+                #     "date" : d[2][0],
+                #     "time" : d[2][1],
+                #     "league" : d[0],
+                #     "home_team" : d[1][0],
+                #     "away_team" : d[1][1],
+                #     "home_goals" : d[3][0],
+                #     "away_goals" : d[3][1],
+                #     "home_possession" : d[4][0],
+                #     "away_possession" : d[4][1],
+                #     "home_shots" : d[5][0],
+                #     "away_shots" : d[5][1],
+                #     "home_ontarget" : d[6][0],
+                #     "away_ontarget" : d[6][1],
+                #     "home_fouls" : d[7][0],
+                #     "away_fouls" : d[7][1],
+                #     "home_offsides" : d[8][0],
+                #     "away_offsides" : d[8][1],
+                #     "home_corners" : d[9][0],
+                #     "away_corners" : d[9][1],  
+                #     "home_yellow_cards" : d[10][0],
+                #     "away_yellow_cards" : d[10][1],   
+                #     "home_red_cards" : d[11][0],
+                #     "away_red_cards" : d[11][1],   
+                continue;     
+                    
             else:     
                 doc = {
                     "_id" : id,
@@ -843,11 +844,11 @@ def export_old(data):
 
 ##### koniec dodatkowych funkcji // początek testów
 
-export(integrate())
+# export(integrate())
 
 # export_old(livescores_get_yesterday_data())
 
-# export_old(meczyki_get_previous_data())
+export_old(meczyki_get_previous_data())
 
 # db = get_database()
 # collection_name = db["Matches"]

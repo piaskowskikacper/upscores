@@ -3,6 +3,7 @@ import { Match } from '../match';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatchService } from '../match.service';
 import { AppComponent } from '../app.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-live-view',
@@ -13,7 +14,7 @@ export class LiveViewComponent implements OnInit{
   public matches: Match[];
 
 
-  constructor(private matchService: MatchService, private cd: ChangeDetectorRef, private ngZone: NgZone){ 
+  constructor(private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
 
   }
 

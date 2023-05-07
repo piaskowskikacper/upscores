@@ -4,6 +4,7 @@ import { Match } from '../match';
 import { MatchService } from '../match.service';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-datepicker-view',
@@ -14,7 +15,7 @@ export class DatepickerViewComponent implements OnInit{
   public date : any;
   public matches: Match[];
 
-  constructor(private activatedRoute: ActivatedRoute, private matchService: MatchService, private cd: ChangeDetectorRef){ 
+  constructor(private activatedRoute: ActivatedRoute, private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
 
   }
 

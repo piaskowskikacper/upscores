@@ -159,18 +159,18 @@ app.post('/login', (req,res)=> {
 });
 
 
-setInterval(function(){
-    const childDbUpdate = spawn('py', ['scrapper.py']);
+// setInterval(function(){
+//     const childDbUpdate = spawn('py', ['scrapper.py']);
 
-    childDbUpdate.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
-    });
+//     childDbUpdate.stdout.on('data', (data) => {
+//         console.log(`stdout: ${data}`);
+//     });
     
-    childDbUpdate.stderr.on('data', (data) => {
-        console.log(`stderr: ${data}`);
-    });
+//     childDbUpdate.stderr.on('data', (data) => {
+//         console.log(`stderr: ${data}`);
+//     });
     
-    childDbUpdate.on('close', (code) => {
-        console.log(`database update exited with code ${code}`);
-    });
-}, 300000);
+//     childDbUpdate.on('close', (code) => {
+//         console.log(`database update exited with code ${code}`);
+//     });
+// }, 300000);
