@@ -3,8 +3,8 @@
     <a href="" routerLink="/scores" class="logo-text"><img src="./assets/shoot.png" alt="image"> <p style="margin-left: 0.5em; margin-right: 0.5em;">UpScores</p> <img src="./assets/goal.png" alt="image"></a>
   </div>
     <div class="d-flex justify-content-center"> 
-    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../login">Login</a>
-    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../register">Register</a>
+    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../login" routerLinkActive="active">Login</a>
+    <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="../register" routerLinkActive="active">Register</a>
     <a class="nav-link" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()" routerLink="../scores">Logout</a>
   </div>
 
@@ -19,11 +19,11 @@
         <mat-datepicker #picker style="color: rgb(0, 0, 0)"></mat-datepicker>
         </mat-form-field >
 
-      <li><span routerLink="/scores" class="nav-link" > ALL </span></li> 
-      <li><span routerLink="/scores/live"  class="nav-link" > LIVE </span></li>  
-      <li><span routerLink="/scores/finished"  class="nav-link" > FINISHED </span></li>  
-      <li><span routerLink="/scores/coming"  class="nav-link" > COMING </span></li>      
-      <li><span routerLink="/scores/favourite" class="nav-link" color="black"> FAVOURITE </span></li>
+      <li><span routerLink="/scores" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link" > ALL </span></li> 
+      <li><span routerLink="/scores/live" routerLinkActive="active" class="nav-link" > LIVE </span></li>  
+      <li><span routerLink="/scores/finished" routerLinkActive="active" class="nav-link" > FINISHED </span></li>  
+      <li><span routerLink="/scores/coming" routerLinkActive="active" class="nav-link" > COMING </span></li>      
+      <li><span routerLink="/scores/favourite" routerLinkActive="active" class="nav-link" color="black"> FAVOURITE </span></li>
      </ul>
      <div>
 

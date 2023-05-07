@@ -214,3 +214,11 @@ body {
 .mat-mdc-form-field-subscript-wrapper{
   margin-bottom: -1.5em;
 }
+
+.active {
+  border: solid 5px #453F3F;
+}
+
+.menu a.active {
+  border: solid 5px #453F3F;
+}
