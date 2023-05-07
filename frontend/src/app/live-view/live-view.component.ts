@@ -12,11 +12,42 @@ import { AuthService } from '../auth.service';
 })
 export class LiveViewComponent implements OnInit{
   public matches: Match[];
-  public favId: any;
-
+  public favMatches: Match[];
 
   constructor(private matchService: MatchService, private cd: ChangeDetectorRef, public _authService: AuthService){ 
 
+  }
+
+  
+  public getFavouriteMatches(): void {
+    this.matchService.getFavouriteMatches().subscribe(
+      (response: Match[]) => {
+        this.favMatches = response;
+        
+      },
+      (error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          console.log(error)
+        }
+      }
+    )
+  }
+
+  public checkIfFavourite(id: any): Boolean{
+    var check = false;
+    this.favMatches?.forEach(element => {
+      if (element._id === id)  {
+        console.log(element._id)
+        check = true;
+      }  
+    });
+
+    if (check){
+      return true
+    }
+    else {
+      return false
+    }
   }
 
   public markAsFavourite(_id : String): void{
@@ -24,6 +55,7 @@ export class LiveViewComponent implements OnInit{
       .subscribe(
         res => {
           console.log(res)
+          window.location.reload()
         },
         err => console.log(err)
       )
@@ -46,6 +78,7 @@ export class LiveViewComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.getFavouriteMatches();
     this.getLiveMatches();
     this.interval;
     this.cd.detectChanges();
