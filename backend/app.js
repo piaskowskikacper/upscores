@@ -32,6 +32,7 @@ function verifyToken(req,res,next){
     if(!payload) {
         return res.status(401).send('Unauthorized request')
     }   
+    // console.log(payload.subject)
     req.userId = payload.subject
     next()
 }
@@ -68,14 +69,26 @@ app.get('/matches/coming', (req, res) => {
         .catch((error) => console.log(error))
 });
 
-app.get('/matches/favourite', verifyToken, (req, res) => {
-    
-    Match.find({ _id: "AFC-Bournemouth_Chelsea_2023-05-06" })
-        .then(matches => res.send(matches))
-        .catch((error) => console.log(error))
-});
+app.get('/matches/favourite', 
+verifyToken, 
+(req, res) => {
 
-// + endpoint do wyszukiwania searchem ???
+    let token = req.headers.authorization.split(' ')[1]
+    let decoded = jwt.verify(token, 'secretKey') 
+    var userId = decoded.subject;
+    // console.log(userId)
+
+    User.findOne({_id: userId}, {_id: 0, favourite:1})
+        .then(matches => {
+            Match.find({ _id: matches.favourite })
+                .then(result => res.send(result))
+            })
+
+            // console.log(matches)
+            // res.send(matches),
+
+        .catch((error) => console.log(error))
+    })
 
 
 app.get('/matches/:_id', (req, res) => {

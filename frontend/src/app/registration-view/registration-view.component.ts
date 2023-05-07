@@ -9,7 +9,7 @@ import { Route, Router } from '@angular/router';
 })
 export class RegistrationViewComponent implements OnInit{
 
-  registerUserData = {username: '', password: ''}
+  registerUserData = {username: '', password: '', favourite: []}
   constructor(private _auth: AuthService, private router: Router){}
 
   registerUser(){
@@ -18,7 +18,7 @@ export class RegistrationViewComponent implements OnInit{
         res => {
           console.log(res)
           localStorage.setItem('token', res.token)
-          this.router.navigate(['/scores'])
+          this.router.navigate(['/scores/favourite'])
         },
         err => console.log(err)
       )

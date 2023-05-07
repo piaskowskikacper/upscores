@@ -18,7 +18,7 @@ export class LoginViewComponent implements OnInit {
         res => {
           console.log(res)
           localStorage.setItem('token', res.token)
-          this.router.navigate(['/scores'])
+          this.router.navigate(['/scores/favourite'])
         },
         err => console.log(err)
       )
