@@ -102,12 +102,17 @@ app.post("/register", (req, res) => {
     User.findOne({username: user.username})
         .then(userData => {
             if (!userData) {
-                user.save()
-                .then(registeredUser => {
-                    let payload = { subject: registeredUser._id }
-                    let token = jwt.sign(payload, 'secretKey')
-                    res.status(200).send({token})
-                })
+                if (user.username.indexOf(' ') == -1) {
+                    user.save()
+                    .then(registeredUser => {
+                        let payload = { subject: registeredUser._id }
+                        let token = jwt.sign(payload, 'secretKey')
+                        res.status(200).send({token})
+                    })   
+                } else {
+                    res.status(404).send('Username can not be empty!')
+                }
+
             } else {
                 res.status(404).send('Username already taken')
             }
