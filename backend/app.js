@@ -102,7 +102,7 @@ app.post("/register", (req, res) => {
     User.findOne({username: user.username})
         .then(userData => {
             if (!userData) {
-                if (user.username.indexOf(' ') == -1) {
+                if (user.username.indexOf(' ') == -1 && user.password.indexOf(' ') == -1 && user.password.indexOf('') == -1){
                     user.save()
                     .then(registeredUser => {
                         let payload = { subject: registeredUser._id }
@@ -110,7 +110,7 @@ app.post("/register", (req, res) => {
                         res.status(200).send({token})
                     })   
                 } else {
-                    res.status(404).send('Username can not be empty!')
+                    res.status(404).send('You can not put empty username or password!')
                 }
 
             } else {
