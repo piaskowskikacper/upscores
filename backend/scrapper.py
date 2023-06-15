@@ -545,7 +545,8 @@ def livescores_get_red_cards(soup):
 ##### koniec livescores /// początek programu (integracja z eksportem)
 
 def get_database():
-    uri = "mongodb+srv://m001-student:Ip5IFT3atKrlQ3tu@sandbox.7vudx.mongodb.net/?retryWrites=true&w=majority"
+    uri = "xxx"
+    # deleted uri
     client = MongoClient(uri)
     # try:
     #     client.admin.command('ping')
